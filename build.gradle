@@ -42,10 +42,9 @@ dependencies {
   repositories {
     mavenCentral()
     maven { url 'http://maven.localytics.com/public' }
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
   }
 
-  provided 'com.segment.analytics.android:analytics:4.0.0-SNAPSHOT'
+  provided 'com.segment.analytics.android:analytics:4.0.0'
 
   compile 'com.localytics.android:library:3.5.0'
   compile 'com.android.support:support-v4:23.1.1'
@@ -56,7 +55,7 @@ dependencies {
     exclude group: 'org.apache.httpcomponents', module: 'httpclient'
   }
 
-  testCompile 'com.segment.analytics.android:analytics-tests:4.0.0-SNAPSHOT'
+  testCompile 'com.segment.analytics.android:analytics-tests:4.0.0'
 
   testCompile 'org.assertj:assertj-core:1.7.1'
 
