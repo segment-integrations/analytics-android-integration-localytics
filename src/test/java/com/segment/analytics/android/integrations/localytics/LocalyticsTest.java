@@ -59,7 +59,7 @@ public class LocalyticsTest {
 
   @Test public void initialize() {
     LocalyticsIntegration integration = new LocalyticsIntegration(analytics,
-        new ValueMap().putValue("appKey", "foo")
+        new ValueMap().putValue("appKey", "foo").putValue("setOrganizationScope", true)
             .putValue("dimensions", new ValueMap().putValue("foo", "bar")));
 
     verifyStatic();
@@ -67,6 +67,8 @@ public class LocalyticsTest {
     verifyStatic();
     Localytics.setLoggingEnabled(true);
     assertThat(integration.customDimensions).isEqualTo(Collections.singletonMap("foo", "bar"));
+    verifyStatic();
+    assertThat(integration.attributeScope).isEqualTo(Localytics.ProfileScope.ORGANIZATION);
   }
 
   @Test public void activityResume() {
