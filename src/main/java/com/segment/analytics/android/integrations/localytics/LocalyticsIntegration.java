@@ -17,7 +17,6 @@ import com.segment.analytics.integrations.TrackPayload;
 import java.util.Collections;
 import java.util.Map;
 
-import static com.localytics.android.Localytics.ProfileScope.APPLICATION;
 import static com.segment.analytics.Analytics.LogLevel;
 import static com.segment.analytics.internal.Utils.isNullOrEmpty;
 import static com.segment.analytics.internal.Utils.isOnClassPath;
