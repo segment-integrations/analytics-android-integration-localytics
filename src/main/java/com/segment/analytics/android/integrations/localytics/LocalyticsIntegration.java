@@ -17,7 +17,6 @@ import com.segment.analytics.integrations.TrackPayload;
 import java.util.Collections;
 import java.util.Map;
 
-import static com.localytics.android.Localytics.ProfileScope.APPLICATION;
 import static com.segment.analytics.Analytics.LogLevel;
 import static com.segment.analytics.internal.Utils.isNullOrEmpty;
 import static com.segment.analytics.internal.Utils.isOnClassPath;
@@ -44,6 +43,8 @@ public class LocalyticsIntegration extends Integration<Void> {
 
   final Logger logger;
   final boolean hasSupportLibOnClassPath;
+  final boolean organizationScope;
+  final Localytics.ProfileScope attributeScope;
   ValueMap customDimensions;
 
   LocalyticsIntegration(Analytics analytics, ValueMap settings) {
@@ -63,6 +64,13 @@ public class LocalyticsIntegration extends Integration<Void> {
     customDimensions = settings.getValueMap("dimensions");
     if (customDimensions == null) {
       customDimensions = new ValueMap(Collections.<String, Object>emptyMap());
+    }
+
+    organizationScope = settings.getBoolean("setOrganizationScope", false);
+    if (organizationScope) {
+      attributeScope = Localytics.ProfileScope.ORGANIZATION;
+    } else {
+      attributeScope = Localytics.ProfileScope.APPLICATION;
     }
   }
 
@@ -141,8 +149,8 @@ public class LocalyticsIntegration extends Integration<Void> {
     for (Map.Entry<String, Object> entry : traits.entrySet()) {
       String key = entry.getKey();
       String value = String.valueOf(entry.getValue());
-      Localytics.setProfileAttribute(key, value, APPLICATION);
-      logger.verbose("Localytics.setProfileAttribute(%s, %s, %s);", key, value, APPLICATION);
+      Localytics.setProfileAttribute(key, value, attributeScope);
+      logger.verbose("Localytics.setProfileAttribute(%s, %s, %s);", key, value, attributeScope);
     }
   }
 
