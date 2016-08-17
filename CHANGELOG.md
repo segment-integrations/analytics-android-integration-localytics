@@ -1,4 +1,10 @@
 
+Version 1.0.4 (23rd June, 2016)
+===================================
+*(Supports analytics-android 4.0.+ and Localytics 4.0.1+)*
+
+  * Add option for setting attributeScope for User Profiles
+
 Version 1.0.3 (23rd June, 2016)
 ===================================
 *(Supports analytics-android 4.0.+ and Localytics 4.0.1+)*
