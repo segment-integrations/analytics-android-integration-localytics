@@ -1,3 +1,8 @@
+Version 1.0.5 (7th April, 2017)
+===================================
+*(Supports analytics-android 4.0.+ and Localytics 4.3.1+)*
+
+  * Bumps Localytics from 4.0.1 to 4.3.1.
 
 Version 1.0.4 (23rd June, 2016)
 ===================================
