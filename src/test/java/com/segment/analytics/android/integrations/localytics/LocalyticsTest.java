@@ -130,12 +130,20 @@ public class LocalyticsTest {
 
   @Test public void identifyWithSpecialFields() {
     integration.identify(new IdentifyPayloadBuilder().traits(
-        createTraits("foo").putEmail("baz").putName("bar").putValue("custom", "qaz")).build());
+        createTraits("foo").putEmail("baz").putName("bar").putFirstName("bar").putLastName("foo").putValue("custom", "qaz")).build());
 
     verifyStatic();
     Localytics.setCustomerId("foo");
     verifyStatic();
     Localytics.setIdentifier("email", "baz");
+    verifyStatic();
+    Localytics.setCustomerEmail("baz");
+    verifyStatic();
+    Localytics.setCustomerFirstName("bar");
+    verifyStatic();
+    Localytics.setCustomerLastName("foo");
+    verifyStatic();
+    Localytics.setCustomerFullName("bar");
     verifyStatic();
     Localytics.setIdentifier("customer_name", "bar");
     verifyStatic();
