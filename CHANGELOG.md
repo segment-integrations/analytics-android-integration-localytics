@@ -1,3 +1,10 @@
+Version 1.1.0 (30th August, 2017)
+===================================
+*(Supports analytics-android 4.0.+ and Localytics 4.3.1+)*
+
+  * [New](https://github.com/segment-integrations/analytics-android-integration-localytics/pull/6/files): Maps email, name, firstName and lastName
+    traits to Localytics special id fields $email, $full_name, $first_name, and $last_name
+
 Version 1.0.5 (7th April, 2017)
 ===================================
 *(Supports analytics-android 4.0.+ and Localytics 4.3.1+)*
