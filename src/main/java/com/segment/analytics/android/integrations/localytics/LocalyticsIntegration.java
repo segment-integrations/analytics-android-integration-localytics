@@ -140,7 +140,7 @@ public class LocalyticsIntegration extends Integration<Void> {
       Localytics.setIdentifier("email", email);
       Localytics.setCustomerEmail(email);
       logger.verbose("Localytics.setIdentifier(\"email\", %s);", email);
-      logger.verbose("Localytics.setCustomerEmail(\"$email\", %s);", email);
+      logger.verbose("Localytics.setCustomerEmail(%s);", email);
     }
 
     String name = traits.name();
@@ -148,19 +148,19 @@ public class LocalyticsIntegration extends Integration<Void> {
       Localytics.setIdentifier("customer_name", name);
       Localytics.setCustomerFullName(name);
       logger.verbose("Localytics.setIdentifier(\"customer_name\", %s);", name);
-      logger.verbose("Localytics.setFullName(\"$full_name\", %s);", name);
+      logger.verbose("Localytics.setFullName(%s);", name);
     }
 
     String firstName = traits.firstName();
     if (!isNullOrEmpty(firstName)) {
       Localytics.setCustomerFirstName(firstName);
-      logger.verbose("Localytics.setCustomerFirstName(\"$first_name\", %s);", firstName);
+      logger.verbose("Localytics.setCustomerFirstName(%s);", firstName);
     }
 
     String lastName = traits.lastName();
     if (!isNullOrEmpty(lastName)) {
       Localytics.setCustomerLastName(lastName);
-      logger.verbose("Localytics.setCustomerLastName(\"$first_name\", %s);", firstName);
+      logger.verbose("Localytics.setCustomerLastName(%s);", firstName);
     }
 
     setCustomDimensions(traits);
