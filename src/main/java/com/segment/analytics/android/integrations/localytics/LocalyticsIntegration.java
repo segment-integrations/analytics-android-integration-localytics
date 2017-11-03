@@ -30,15 +30,18 @@ import static com.segment.analytics.internal.Utils.isOnClassPath;
  * @see <a href="http://www.localytics.com/docs/android-integration/">Localytics Android SDK</a>
  */
 public class LocalyticsIntegration extends Integration<Void> {
-  public static final Factory FACTORY = new Factory() {
-    @Override public Integration<?> create(ValueMap settings, Analytics analytics) {
-      return new LocalyticsIntegration(analytics, settings);
-    }
+  public static final Factory FACTORY =
+      new Factory() {
+        @Override
+        public Integration<?> create(ValueMap settings, Analytics analytics) {
+          return new LocalyticsIntegration(analytics, settings);
+        }
 
-    @Override public String key() {
-      return LOCALYTICS_KEY;
-    }
-  };
+        @Override
+        public String key() {
+          return LOCALYTICS_KEY;
+        }
+      };
   private static final String LOCALYTICS_KEY = "Localytics";
 
   final Logger logger;
@@ -74,7 +77,8 @@ public class LocalyticsIntegration extends Integration<Void> {
     }
   }
 
-  @Override public void onActivityResumed(Activity activity) {
+  @Override
+  public void onActivityResumed(Activity activity) {
     super.onActivityResumed(activity);
 
     Localytics.openSession();
@@ -98,7 +102,8 @@ public class LocalyticsIntegration extends Integration<Void> {
     }
   }
 
-  @Override public void onActivityPaused(Activity activity) {
+  @Override
+  public void onActivityPaused(Activity activity) {
     super.onActivityPaused(activity);
 
     if (hasSupportLibOnClassPath) {
@@ -116,14 +121,16 @@ public class LocalyticsIntegration extends Integration<Void> {
     logger.verbose("Localytics.upload();");
   }
 
-  @Override public void flush() {
+  @Override
+  public void flush() {
     super.flush();
 
     Localytics.upload();
     logger.verbose("Localytics.upload();");
   }
 
-  @Override public void identify(IdentifyPayload identify) {
+  @Override
+  public void identify(IdentifyPayload identify) {
     super.identify(identify);
 
     setContext(identify.context());
@@ -173,7 +180,8 @@ public class LocalyticsIntegration extends Integration<Void> {
     }
   }
 
-  @Override public void screen(ScreenPayload screen) {
+  @Override
+  public void screen(ScreenPayload screen) {
     super.screen(screen);
 
     setContext(screen.context());
@@ -183,7 +191,8 @@ public class LocalyticsIntegration extends Integration<Void> {
     logger.verbose("Localytics.tagScreen(%s);", event);
   }
 
-  @Override public void track(TrackPayload track) {
+  @Override
+  public void track(TrackPayload track) {
     super.track(track);
     setContext(track.context());
 
