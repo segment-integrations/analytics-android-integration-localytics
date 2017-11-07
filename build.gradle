@@ -41,7 +41,7 @@ dependencies {
 
   provided 'com.segment.analytics.android:analytics:4.0.0'
 
-  compile 'com.localytics.android:library:4.3.1'
+  compile 'com.localytics.android:library:4.5.1'
   compile 'com.android.support:support-v4:25.2.0'
 
   testCompile 'junit:junit:4.12'
