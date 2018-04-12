@@ -60,8 +60,10 @@ public class LocalyticsIntegration extends Integration<Void> {
     logger.verbose("Localytics.setLoggingEnabled(%s);", loggingEnabled);
 
     String appKey = settings.getString("appKey");
-    Localytics.integrate(analytics.getApplication(), appKey);
-    logger.verbose("Localytics.integrate(context, %s);", appKey);
+    Localytics.integrate(analytics.getApplication());
+    logger.verbose("Localytics.integrate(context);");
+    Localytics.setOption("ll_app_key", appKey);
+    logger.verbose("Localytics.setOption(%s);", appKey);
 
     hasSupportLibOnClassPath = isOnClassPath("android.support.v4.app.FragmentActivity");
     customDimensions = settings.getValueMap("dimensions");

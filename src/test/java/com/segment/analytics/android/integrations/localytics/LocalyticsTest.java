@@ -63,7 +63,9 @@ public class LocalyticsTest {
             .putValue("dimensions", new ValueMap().putValue("foo", "bar")));
 
     verifyStatic();
-    Localytics.integrate(RuntimeEnvironment.application, "foo");
+    Localytics.integrate(RuntimeEnvironment.application);
+    verifyStatic();
+    Localytics.setOption("ll_app_key", "foo");
     verifyStatic();
     Localytics.setLoggingEnabled(true);
     assertThat(integration.customDimensions).isEqualTo(Collections.singletonMap("foo", "bar"));
