@@ -1,3 +1,9 @@
+Version 1.4.0 (15th August, 2019)
+==================================
+*(Supports analytics-android 4.0.+ and Localytics 5.6.+)*
+
+  * Bumps Localytics from 5.1.0 to 5.6.1
+
 Version 1.3.0 (12th April, 2018)
 ==================================
 *(Supports analytics-android 4.0.+ and Localytics 5.1.+)*
