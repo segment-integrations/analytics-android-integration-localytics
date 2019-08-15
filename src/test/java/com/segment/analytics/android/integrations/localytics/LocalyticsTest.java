@@ -3,18 +3,18 @@ package com.segment.analytics.android.integrations.localytics;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
+
 import com.localytics.android.Localytics;
 import com.segment.analytics.Analytics;
 import com.segment.analytics.Properties;
 import com.segment.analytics.ValueMap;
 import com.segment.analytics.core.tests.BuildConfig;
-import com.segment.analytics.integrations.Logger;
 import com.segment.analytics.test.GroupPayloadBuilder;
 import com.segment.analytics.test.IdentifyPayloadBuilder;
+import com.segment.analytics.integrations.Logger;
 import com.segment.analytics.test.ScreenPayloadBuilder;
 import com.segment.analytics.test.TrackPayloadBuilder;
-import java.util.Collections;
-import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,6 +27,9 @@ import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
+
+import java.util.Collections;
+import java.util.HashMap;
 
 import static com.segment.analytics.Analytics.LogLevel.VERBOSE;
 import static com.segment.analytics.Utils.createTraits;
@@ -132,7 +135,7 @@ public class LocalyticsTest {
 
   @Test public void identifyWithSpecialFields() {
     integration.identify(new IdentifyPayloadBuilder().traits(
-        createTraits("foo").putEmail("baz").putName("bar").putFirstName("bar").putLastName("foo").putValue("custom", "qaz")).build());
+            createTraits("foo").putEmail("baz").putName("bar").putFirstName("bar").putLastName("foo").putValue("custom", "qaz")).build());
 
     verifyStatic();
     Localytics.setCustomerId("foo");

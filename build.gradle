@@ -1,11 +1,14 @@
 buildscript {
   repositories {
     mavenCentral()
+    jcenter()
+    google()
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.3.0'
+    classpath 'com.android.tools.build:gradle:3.4.2'
     classpath 'com.f2prateek.javafmt:javafmt:0.1.6'
+    classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.11.0'
   }
 }
 
@@ -13,13 +16,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.f2prateek.javafmt'
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion '25.0.2'
+  compileSdkVersion 28
+  buildToolsVersion '28.0.3'
 
   defaultConfig {
-    minSdkVersion 14
-    targetSdkVersion 25
-    compileSdkVersion 25
+    minSdkVersion 17
+    targetSdkVersion 28
   }
 
   compileOptions {
@@ -30,37 +32,42 @@ android {
   lintOptions {
     // Okio https://cloudup.com/cp7bi10o2C3g
     disable 'InvalidPackage'
+    abortOnError false
   }
 }
 
 dependencies {
   repositories {
     mavenCentral()
+    jcenter()
+    google()
     maven { url 'https://maven.localytics.com/public' }
   }
 
-  provided 'com.segment.analytics.android:analytics:4.0.0'
+  api 'com.segment.analytics.android:analytics:4.0.0'
+  api 'com.localytics.android:library:5.6.1'
+  implementation 'com.android.support:support-v4:28.0.0'
 
-  compile 'com.android.support:support-v4:25.2.0'
-  compile 'com.localytics.android:library:5.6.1'
-
-  testCompile 'junit:junit:4.12'
-  testCompile('org.robolectric:robolectric:3.3.2') {
+  testImplementation 'junit:junit:4.12'
+  testImplementation('org.robolectric:robolectric:3.3.2') {
     exclude group: 'commons-logging', module: 'commons-logging'
     exclude group: 'org.apache.httpcomponents', module: 'httpclient'
   }
 
-  testCompile 'com.segment.analytics.android:analytics-tests:4.0.0'
-
-  testCompile 'org.assertj:assertj-core:1.7.1'
-
-  testCompile 'org.mockito:mockito-core:1.10.19'
-
-  testCompile 'org.powermock:powermock:1.6.5'
-  testCompile 'org.powermock:powermock-module-junit4:1.6.5'
-  testCompile 'org.powermock:powermock-module-junit4-rule:1.6.5'
-  testCompile 'org.powermock:powermock-api-mockito:1.6.5'
-  testCompile 'org.powermock:powermock-classloading-xstream:1.6.5'
+  testImplementation 'com.segment.analytics.android:analytics-tests:4.0.0'
+  testImplementation 'org.assertj:assertj-core:1.7.1'
+  testImplementation 'org.mockito:mockito-core:1.10.19'
+  testImplementation 'org.powermock:powermock:1.6.5'
+  testImplementation 'org.powermock:powermock-module-junit4:1.6.5'
+  testImplementation 'org.powermock:powermock-module-junit4-rule:1.6.5'
+  testImplementation 'org.powermock:powermock-api-mockito:1.6.5'
+  testImplementation 'org.powermock:powermock-classloading-xstream:1.6.5'
 }
 
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+// Use -Prelease or $ORG_GRADLE_PROJECT_RELEASE="true" to mark the project as a release
+ext.isRelease = hasProperty('release')
+
+apply from: rootProject.file('gradle/attach-jar.gradle')
+apply from: rootProject.file('gradle/upload.gradle')
+apply from: rootProject.file('gradle/sign.gradle')
+apply from: rootProject.file('gradle/promote.gradle')
