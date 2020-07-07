@@ -6,6 +6,41 @@ analytics-android-integration-localytics
 
 Localytics integration for [analytics-android](https://github.com/segmentio/analytics-android).
 
+## Installation
+
+To install the Segment-Localytics integration, simply add this line to your gradle file: 
+
+```
+compile 'com.segment.analytics.android:analytics-integration-localytics:+'
+```
+
+Since Localytics does not publish to Maven Central, you will also need to add the Maven Localytics repo. 
+
+```
+repositories {
+  mavenCentral()
+  maven { url 'http://maven.localytics.com/public' }
+}
+```
+
+## Usage
+
+Next, register the integration with our SDK.  To do this, import the Localytics integration:
+
+
+```
+import com.segment.analytics.internal.integrations.LocalyticsIntegration;
+
+```
+
+And add the following line:
+
+```
+analytics = new Analytics.Builder(this, "write_key")
+                .use(LocalyticsIntegration.FACTORY)
+                .build();
+```
+
 ## License
 
 ```
