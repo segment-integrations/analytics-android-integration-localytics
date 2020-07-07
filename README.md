@@ -11,7 +11,7 @@ Localytics integration for [analytics-android](https://github.com/segmentio/anal
 To install the Segment-Localytics integration, simply add this line to your gradle file: 
 
 ```
-compile 'com.segment.analytics.android:analytics-integration-localytics:3.4.0'
+compile 'com.segment.analytics.android:analytics-integration-localytics:+'
 ```
 
 Since Localytics does not publish to Maven Central, you will also need to add the Maven Localytics repo. 
